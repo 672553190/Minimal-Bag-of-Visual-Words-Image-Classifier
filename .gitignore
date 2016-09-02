@@ -25,3 +25,9 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+grid.py
+libsvm/
+sift
+siftDemoV4/
+tmp.pgm
