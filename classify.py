@@ -60,4 +60,9 @@ writeHistogramsToFile(nclusters,
 
 print "---------------------"
 print "## test data with svm"
-print libsvm.test(HISTOGRAMS_FILE, model_file)
+results = libsvm.test(HISTOGRAMS_FILE, model_file)
+print results
+
+f = open("classification-results.txt", "w")
+f.write(results)
+f.close()
