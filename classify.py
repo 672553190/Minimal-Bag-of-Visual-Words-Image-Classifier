@@ -2,17 +2,18 @@ import libsvm
 import argparse
 from cPickle import load
 from learn import extractSift, computeHistograms, writeHistogramsToFile
+import glob
 
 HISTOGRAMS_FILE = 'testdata.svm'
 CODEBOOK_FILE = 'codebook.file'
 MODEL_FILE = 'trainingdata.svm.model'
-
+TEST_DIRECTORY = "test"
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description='classify images with a visual bag of words model')
     parser.add_argument('-c', help='path to the codebook file', required=False, default=CODEBOOK_FILE)
     parser.add_argument('-m', help='path to the model  file', required=False, default=MODEL_FILE)
-    parser.add_argument('input_images', help='images to classify', nargs='+')
+    parser.add_argument('-d', help='path to the test directory', required=False, default=TEST_DIRECTORY)
     args = parser.parse_args()
     return args
 
@@ -26,7 +27,12 @@ all_features = {}
 args = parse_arguments()
 model_file = args.m
 codebook_file = args.c
-fnames = args.input_images
+test_directory = args.d
+fnames = []
+
+for _file in glob.glob(test_directory+"/*/*"):
+	fnames.append(_file)
+
 all_features = extractSift(fnames)
 for i in fnames:
     all_files_labels[i] = 0  # label is unknown
