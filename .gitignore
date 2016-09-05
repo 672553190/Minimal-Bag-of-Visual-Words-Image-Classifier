@@ -31,3 +31,4 @@ libsvm/
 sift
 siftDemoV4/
 tmp.pgm
+testdata.svm

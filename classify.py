@@ -30,8 +30,9 @@ codebook_file = args.c
 test_directory = args.d
 fnames = []
 
-for _file in glob.glob(test_directory+"/*/*"):
+for _file in glob.glob(test_directory+"/*/*.JPG"):
 	fnames.append(_file)
+
 
 all_features = extractSift(fnames)
 for i in fnames:
@@ -63,6 +64,9 @@ print "## test data with svm"
 results = libsvm.test(HISTOGRAMS_FILE, model_file)
 print results
 
-f = open("classification-results.txt", "w")
-f.write(results)
+print "Length of filenames : ", len(fnames)
+
+f = open("filenames.txt", "w")
+f.write("\n".join(fnames)+"\n")
 f.close()
+
