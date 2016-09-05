@@ -163,3 +163,9 @@ if __name__ == '__main__':
     print "category      ==>  label"
     for cat in cat_label:
         print '{0:13} ==> {1:6d}'.format(cat, cat_label[cat])
+
+    #Write category mappings to a json file
+    import json
+    f = open("category_mapping.json", "w")
+    f.write(json.dumps(cat_label))
+    f.close()
